@@ -18,25 +18,52 @@ namespace AgricolaCalculator
     {
         private Player player;
         private string selectedPlayer;
-        private int fieldsScore, pasturesScore, grainScore, vegetablesScore, sheepScore,
-                    wildBoarScore, cattleScore, fencedStablesScore, unuseedSpacesScore,
-                    roomsScore, roomTypeScore, familyMembersScore, bonusPointsScore, beggingCardsScore = 0;
-
-        List<ScoreButton> fieldstBtnList;
-        List<ScoreButton> pasturestBtnList;
-        
+        private List<List<ScoreButton>> guiList;
+        private List<ScoreButton> fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList;
 
         public Score()
         {
             InitializeComponent();
 
-            fieldstBtnList = new List<ScoreButton> { new ScoreButton(-1, fieldsBtn1), new ScoreButton(2, fieldsBtn2), new ScoreButton(3, fieldsBtn3), new ScoreButton(4, fieldsBtn4), new ScoreButton(5, fieldsBtn5) };
-            pasturestBtnList = new List<ScoreButton> { new ScoreButton(-1, pasturesBtn1), new ScoreButton(2, pasturesBtn2), new ScoreButton(3, pasturesBtn3), new ScoreButton(4, pasturesBtn4), new ScoreButton(5, pasturesBtn5) };
+            fieldstBtnList = new List<ScoreButton> { new ScoreButton(-1, fieldsBtn1), new ScoreButton(1, fieldsBtn2), new ScoreButton(2, fieldsBtn3), new ScoreButton(3, fieldsBtn4), new ScoreButton(4, fieldsBtn5) };
+            pasturesBtnList = new List<ScoreButton> { new ScoreButton(-1, pasturesBtn1), new ScoreButton(1, pasturesBtn2), new ScoreButton(2, pasturesBtn3), new ScoreButton(3, pasturesBtn4), new ScoreButton(4, pasturesBtn5) };
+            grainBtnList = new List<ScoreButton> { new ScoreButton(-1, grainBtn1), new ScoreButton(1, grainBtn2), new ScoreButton(2, grainBtn3), new ScoreButton(3, grainBtn4), new ScoreButton(4, grainBtn5) };
+            vegetablesBtnList = new List<ScoreButton> { new ScoreButton(-1, vegetablesBtn1), new ScoreButton(1, vegetablesBtn2), new ScoreButton(2, vegetablesBtn3), new ScoreButton(3, vegetablesBtn4), new ScoreButton(4, vegetablesBtn5) };
+            sheepBtnList = new List<ScoreButton> { new ScoreButton(-1, sheepBtn1), new ScoreButton(1, sheepBtn2), new ScoreButton(2, sheepBtn3), new ScoreButton(3, sheepBtn4), new ScoreButton(4, sheepBtn5) };
+
+
+            guiList = new List<List<ScoreButton>> { fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList };
 
             Loaded += (s, e) =>
             {
                 setupSelectedPlayer();
+                setupGUI();
             };
+        }
+
+        private void setupSelectedPlayer()
+        {
+            player = StateManager.Get<Player>(selectedPlayer);
+            playerNameTxt.Text = player.name;
+        }
+
+        private void countTotalScore()
+        {
+            player.score = player.pointsList.Sum();
+            StateManager.Set<Player>(selectedPlayer, player);
+        }
+
+        private void setupGUI()
+        {
+            for (int i = 0; i < fieldstBtnList.Count; i++)
+            {
+                if (fieldstBtnList[i].points == player.pointsList[0])
+                {
+                    fieldstBtnList[i].btn.IsChecked = true;
+                    break;
+                }
+            }
+
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -51,19 +78,14 @@ namespace AgricolaCalculator
             StateManager.Set<Player>(selectedPlayer, player);
         }
 
-        private void setupSelectedPlayer()
-        {
-            player = StateManager.Get<Player>(selectedPlayer);
-            playerNameTxt.Text = player.name;
-        }
-
         private void fieldsBtn_Checked(object sender, RoutedEventArgs e)
         {
             foreach(ScoreButton fieldBtn in fieldstBtnList)
             {
                 if (fieldBtn.btn.IsPressed)
                 {
-                    fieldsScore = fieldBtn.points;
+                    //fieldsScore = fieldBtn.points;
+                    player.pointsList[0] = fieldBtn.points;
                 }
                 else
                 {
@@ -76,11 +98,12 @@ namespace AgricolaCalculator
 
         private void pasturesBtn_Checked(object sender, RoutedEventArgs e)
         {
-            foreach (ScoreButton pastureBtn in pasturestBtnList)
+            foreach (ScoreButton pastureBtn in pasturesBtnList)
             {
                 if (pastureBtn.btn.IsPressed)
                 {
-                    pasturesScore = pastureBtn.points;
+                    player.pointsList[1] = pastureBtn.points;
+                    
                 }
                 else
                 {
@@ -91,12 +114,58 @@ namespace AgricolaCalculator
             countTotalScore();
         }
 
-        private void countTotalScore()
+        private void grainBtn_Checked(object sender, RoutedEventArgs e)
         {
-            player.score = fieldsScore + pasturesScore + grainScore + vegetablesScore + sheepScore +
-                    wildBoarScore + cattleScore + fencedStablesScore + unuseedSpacesScore +
-                    roomsScore + roomTypeScore + familyMembersScore + bonusPointsScore + beggingCardsScore;
-            StateManager.Set<Player>(selectedPlayer, player);
+            foreach (ScoreButton grainBtn in grainBtnList)
+            {
+                if (grainBtn.btn.IsPressed)
+                {
+                    player.pointsList[2] = grainBtn.points;
+
+                }
+                else
+                {
+                    grainBtn.btn.IsChecked = false;
+                }
+            }
+
+            countTotalScore();
+        }
+
+        private void vegetablesBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (ScoreButton vegetableBtn in vegetablesBtnList)
+            {
+                if (vegetableBtn.btn.IsPressed)
+                {
+                    player.pointsList[3] = vegetableBtn.points;
+
+                }
+                else
+                {
+                    vegetableBtn.btn.IsChecked = false;
+                }
+            }
+
+            countTotalScore();
+        }
+
+        private void sheepBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (ScoreButton sheepBtn in sheepBtnList)
+            {
+                if (sheepBtn.btn.IsPressed)
+                {
+                    player.pointsList[5] = sheepBtn.points;
+
+                }
+                else
+                {
+                    sheepBtn.btn.IsChecked = false;
+                }
+            }
+
+            countTotalScore();
         }
 
         class ScoreButton

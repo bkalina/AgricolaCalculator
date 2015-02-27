@@ -9,9 +9,8 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d" shell:SystemTray.IsVisible="True" d:DesignHeight="768" d:DesignWidth="480" >
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -26,22 +25,48 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBox Height="72" HorizontalAlignment="Center" Margin="0,26,0,0" Name="playerNameTxt" Text="TextBox" VerticalAlignment="Top" Width="204" TextChanged="playerNameTxt_TextChanged" />
-            <!-- FIELDS -->
-            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,160,0,0" Name="fieldsTxt" Text="Fields" VerticalAlignment="Top" TextAlignment="Center" />
-            <ToggleButton Height="72" HorizontalAlignment="Left" Margin="34,195,0,0" Name="fieldsBtn1" VerticalAlignment="Top" Width="72" FontSize="20" Content="0-1" Checked="fieldsBtn_Checked" />
-            <ToggleButton Height="72" HorizontalAlignment="Left" Margin="112,195,0,0" Name="fieldsBtn2" VerticalAlignment="Top" Width="72" FontSize="20" Content="2" Checked="fieldsBtn_Checked" />
-            <ToggleButton Height="72" HorizontalAlignment="Left" Margin="190,195,0,0" Name="fieldsBtn3" VerticalAlignment="Top" Width="72" FontSize="20" Content="3" Checked="fieldsBtn_Checked" />
-            <ToggleButton Height="72" HorizontalAlignment="Left" Margin="269,195,0,0" Name="fieldsBtn4" VerticalAlignment="Top" Width="72" FontSize="20" Content="4" Checked="fieldsBtn_Checked" />
-            <ToggleButton Height="72" HorizontalAlignment="Left" Margin="347,195,0,0" Name="fieldsBtn5" VerticalAlignment="Top" Width="72" FontSize="20" Content="5+" Checked="fieldsBtn_Checked" />
-            <!-- PASTURES -->
-            <TextBlock Height="30" HorizontalAlignment="Center" Margin="0,281,0,0" Name="pasturesTxt" Text="Pastures" TextAlignment="Center" VerticalAlignment="Top" Width="93" />
-            <ToggleButton Content="0-1" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="34,316,0,0" Name="pasturesBtn1" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" />
-            <ToggleButton Content="2" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="112,316,0,0" Name="pasturesBtn2" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" />
-            <ToggleButton Content="3" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="190,316,0,0" Name="pasturesBtn3" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" />
-            <ToggleButton Content="4" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="269,316,0,0" Name="pasturesBtn4" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" />
-            <ToggleButton Content="5+" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="347,316,0,0" Name="pasturesBtn5" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" />
+        
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <TextBox Height="72" HorizontalAlignment="Center" Margin="0,6,0,0" Name="playerNameTxt" Text="TextBox" VerticalAlignment="Top" Width="204" TextChanged="playerNameTxt_TextChanged" />
+            <ScrollViewer Height="784" HorizontalAlignment="Center" Margin="0,84,0,0" Name="scrollViewer1" VerticalAlignment="Stretch" Width="480" VerticalContentAlignment="Stretch">
+                <Grid x:Name="ContentPanel2" Grid.Row="1" Margin="12,0,12,0" Width="469" HorizontalAlignment="Center">
+                    <!-- FIELDS -->
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="195,10,0,0" Name="fieldsTxt" Text="Fields" VerticalAlignment="Top" TextAlignment="Center" Width="65" />
+                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="38,45,0,0" Name="fieldsBtn1" VerticalAlignment="Top" Width="72" FontSize="20" Content="0-1" Checked="fieldsBtn_Checked" Padding="5,8" />
+                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="116,45,0,0" Name="fieldsBtn2" VerticalAlignment="Top" Width="72" FontSize="20" Content="2" Checked="fieldsBtn_Checked" Padding="5,8" />
+                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="194,45,0,0" Name="fieldsBtn3" VerticalAlignment="Top" Width="72" FontSize="20" Content="3" Checked="fieldsBtn_Checked" Padding="5,8" />
+                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="273,45,0,0" Name="fieldsBtn4" VerticalAlignment="Top" Width="72" FontSize="20" Content="4" Checked="fieldsBtn_Checked" Padding="5,8" />
+                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="351,45,0,0" Name="fieldsBtn5" VerticalAlignment="Top" Width="72" FontSize="20" Content="5+" Checked="fieldsBtn_Checked" Padding="5,8" />
+                    <!-- PASTURES -->
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="179,122,0,0" Name="pasturesTxt" Text="Pastures" TextAlignment="Center" VerticalAlignment="Top" Width="93" />
+                    <ToggleButton Content="0" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="38,157,0,0" Name="pasturesBtn1" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" Padding="5,8" />
+                    <ToggleButton Content="1" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="116,157,0,0" Name="pasturesBtn2" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" Padding="5,8" />
+                    <ToggleButton Content="2" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="194,157,0,0" Name="pasturesBtn3" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" Padding="5,8" />
+                    <ToggleButton Content="3" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="273,157,0,0" Name="pasturesBtn4" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" Padding="5,8" />
+                    <ToggleButton Content="4+" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="351,157,0,0" Name="pasturesBtn5" VerticalAlignment="Top" Width="72" Checked="pasturesBtn_Checked" Padding="5,8" />
+                    <!-- GRAIN -->
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="180,234,0,0" Name="textBlock1" Text="Grain" TextAlignment="Center" VerticalAlignment="Top" Width="93" />
+                    <ToggleButton Content="0" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="38,269,0,0" Name="grainBtn1" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="grainBtn_Checked" />
+                    <ToggleButton Content="1-3" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="116,269,0,0" Name="grainBtn2" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="grainBtn_Checked" />
+                    <ToggleButton Content="4-5" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="194,269,0,0" Name="grainBtn3" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="grainBtn_Checked" />
+                    <ToggleButton Content="6-7" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="273,269,0,0" Name="grainBtn4" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="grainBtn_Checked" />
+                    <ToggleButton Content="8+" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="351,269,0,0" Name="grainBtn5" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="grainBtn_Checked" />
+                    <!-- VEGETABLES -->
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="173,346,0,0" Name="textBlock2" Text="Vegetables" TextAlignment="Center" VerticalAlignment="Top" Width="107" />
+                    <ToggleButton Content="0" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="38,381,0,0" Name="vegetablesBtn1" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="vegetablesBtn_Checked" />
+                    <ToggleButton Content="1" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="116,381,0,0" Name="vegetablesBtn2" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="vegetablesBtn_Checked" />
+                    <ToggleButton Content="2" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="194,381,0,0" Name="vegetablesBtn3" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="vegetablesBtn_Checked" />
+                    <ToggleButton Content="3" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="273,381,0,0" Name="vegetablesBtn4" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="vegetablesBtn_Checked" />
+                    <ToggleButton Content="4+" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="351,381,0,0" Name="vegetablesBtn5" VerticalAlignment="Top" Width="72" Padding="5,8" Checked="vegetablesBtn_Checked" />
+                    <!-- SHEEP -->
+                    <TextBlock Height="30" HorizontalAlignment="Left" Margin="181,458,0,0" Name="textBlock3" Text="Sheep" TextAlignment="Center" VerticalAlignment="Top" Width="93" />
+                    <ToggleButton Content="0" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="38,493,0,0" Name="sheepBtn1" Padding="5,8" VerticalAlignment="Top" Width="72" Checked="sheepBtn_Checked" />
+                    <ToggleButton Content="1-3" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="116,493,0,0" Name="sheepBtn2" Padding="5,8" VerticalAlignment="Top" Width="72" Checked="sheepBtn_Checked" />
+                    <ToggleButton Content="4-5" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="194,493,0,0" Name="sheepBtn3" Padding="5,8" VerticalAlignment="Top" Width="72" Checked="sheepBtn_Checked" />
+                    <ToggleButton Content="6-7" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="273,493,0,0" Name="sheepBtn4" Padding="5,8" VerticalAlignment="Top" Width="72" Checked="sheepBtn_Checked" />
+                    <ToggleButton Content="8+" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="351,493,0,0" Name="sheepBtn5" Padding="5,8" VerticalAlignment="Top" Width="72" Checked="sheepBtn_Checked" />
+                </Grid>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>
