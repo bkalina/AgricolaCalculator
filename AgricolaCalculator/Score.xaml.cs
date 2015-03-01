@@ -31,13 +31,13 @@ namespace AgricolaCalculator
             vegetablesBtnList = new List<ScoreButton> { new ScoreButton(-1, vegetablesBtn1), new ScoreButton(1, vegetablesBtn2), new ScoreButton(2, vegetablesBtn3), new ScoreButton(3, vegetablesBtn4), new ScoreButton(4, vegetablesBtn5) };
             sheepBtnList = new List<ScoreButton> { new ScoreButton(-1, sheepBtn1), new ScoreButton(1, sheepBtn2), new ScoreButton(2, sheepBtn3), new ScoreButton(3, sheepBtn4), new ScoreButton(4, sheepBtn5) };
 
-
             guiList = new List<List<ScoreButton>> { fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList };
 
-            Loaded += (s, e) =>
+            Loaded += (sender, e) =>
             {
                 setupSelectedPlayer();
                 setupGUI();
+
             };
         }
 
@@ -55,15 +55,19 @@ namespace AgricolaCalculator
 
         private void setupGUI()
         {
-            for (int i = 0; i < fieldstBtnList.Count; i++)
+            int y = 0;
+            foreach (List<ScoreButton> list in guiList)
             {
-                if (fieldstBtnList[i].points == player.pointsList[0])
+                for (int i = 0; i < list.Count; i++)
                 {
-                    fieldstBtnList[i].btn.IsChecked = true;
-                    break;
+                    if (list[i].points == player.pointsList[y])
+                    {
+                        list[i].btn.Background = new SolidColorBrush(Colors.Red);
+                        break;
+                    }
                 }
+                y++;
             }
-
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -80,7 +84,7 @@ namespace AgricolaCalculator
 
         private void fieldsBtn_Checked(object sender, RoutedEventArgs e)
         {
-            foreach(ScoreButton fieldBtn in fieldstBtnList)
+            foreach (ScoreButton fieldBtn in fieldstBtnList)
             {
                 if (fieldBtn.btn.IsPressed)
                 {
@@ -90,9 +94,10 @@ namespace AgricolaCalculator
                 else
                 {
                     fieldBtn.btn.IsChecked = false;
+                    fieldBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
-            
+
             countTotalScore();
         }
 
@@ -103,11 +108,12 @@ namespace AgricolaCalculator
                 if (pastureBtn.btn.IsPressed)
                 {
                     player.pointsList[1] = pastureBtn.points;
-                    
+
                 }
                 else
                 {
                     pastureBtn.btn.IsChecked = false;
+                    pastureBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
 
@@ -126,6 +132,7 @@ namespace AgricolaCalculator
                 else
                 {
                     grainBtn.btn.IsChecked = false;
+                    grainBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
 
@@ -144,6 +151,7 @@ namespace AgricolaCalculator
                 else
                 {
                     vegetableBtn.btn.IsChecked = false;
+                    vegetableBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
 
@@ -162,6 +170,7 @@ namespace AgricolaCalculator
                 else
                 {
                     sheepBtn.btn.IsChecked = false;
+                    sheepBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
 

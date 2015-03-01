@@ -34,7 +34,7 @@
                     <TextBlock Height="30" HorizontalAlignment="Left" Margin="195,10,0,0" Name="fieldsTxt" Text="Fields" VerticalAlignment="Top" TextAlignment="Center" Width="65" />
                     <ToggleButton Height="72" HorizontalAlignment="Left" Margin="38,45,0,0" Name="fieldsBtn1" VerticalAlignment="Top" Width="72" FontSize="20" Content="0-1" Checked="fieldsBtn_Checked" Padding="5,8" />
                     <ToggleButton Height="72" HorizontalAlignment="Left" Margin="116,45,0,0" Name="fieldsBtn2" VerticalAlignment="Top" Width="72" FontSize="20" Content="2" Checked="fieldsBtn_Checked" Padding="5,8" />
-                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="194,45,0,0" Name="fieldsBtn3" VerticalAlignment="Top" Width="72" FontSize="20" Content="3" Checked="fieldsBtn_Checked" Padding="5,8" />
+                    <ToggleButton Height="72" HorizontalAlignment="Left" Margin="194,45,0,0" Name="fieldsBtn3" VerticalAlignment="Top" Width="72" FontSize="20" Content="3" Checked="fieldsBtn_Checked" Padding="5,8" Background="Black"></ToggleButton>
                     <ToggleButton Height="72" HorizontalAlignment="Left" Margin="273,45,0,0" Name="fieldsBtn4" VerticalAlignment="Top" Width="72" FontSize="20" Content="4" Checked="fieldsBtn_Checked" Padding="5,8" />
                     <ToggleButton Height="72" HorizontalAlignment="Left" Margin="351,45,0,0" Name="fieldsBtn5" VerticalAlignment="Top" Width="72" FontSize="20" Content="5+" Checked="fieldsBtn_Checked" Padding="5,8" />
                     <!-- PASTURES -->
