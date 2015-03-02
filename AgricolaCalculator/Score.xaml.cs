@@ -19,7 +19,7 @@ namespace AgricolaCalculator
         private Player player;
         private string selectedPlayer;
         private List<List<ScoreButton>> guiList;
-        private List<ScoreButton> fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList;
+        private List<ScoreButton> fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList, wildBoarBtnList, cattleBtnList, fencedStablesBtnList;
 
         public Score()
         {
@@ -30,8 +30,11 @@ namespace AgricolaCalculator
             grainBtnList = new List<ScoreButton> { new ScoreButton(-1, grainBtn1), new ScoreButton(1, grainBtn2), new ScoreButton(2, grainBtn3), new ScoreButton(3, grainBtn4), new ScoreButton(4, grainBtn5) };
             vegetablesBtnList = new List<ScoreButton> { new ScoreButton(-1, vegetablesBtn1), new ScoreButton(1, vegetablesBtn2), new ScoreButton(2, vegetablesBtn3), new ScoreButton(3, vegetablesBtn4), new ScoreButton(4, vegetablesBtn5) };
             sheepBtnList = new List<ScoreButton> { new ScoreButton(-1, sheepBtn1), new ScoreButton(1, sheepBtn2), new ScoreButton(2, sheepBtn3), new ScoreButton(3, sheepBtn4), new ScoreButton(4, sheepBtn5) };
+            wildBoarBtnList = new List<ScoreButton> { new ScoreButton(-1, wildBoarBtn1), new ScoreButton(1, wildBoarBtn2), new ScoreButton(2, wildBoarBtn3), new ScoreButton(3, wildBoarBtn4), new ScoreButton(4, wildBoarBtn5) };
+            cattleBtnList = new List<ScoreButton> { new ScoreButton(-1, cattleBtn1), new ScoreButton(1, cattleBtn2), new ScoreButton(2, cattleBtn3), new ScoreButton(3, cattleBtn4), new ScoreButton(4, cattleBtn5) };
+            fencedStablesBtnList = new List<ScoreButton> { new ScoreButton(-1, fencedStablesBtn1), new ScoreButton(1, fencedStablesBtn2), new ScoreButton(2, fencedStablesBtn3), new ScoreButton(3, fencedStablesBtn4), new ScoreButton(4, fencedStablesBtn5) };
 
-            guiList = new List<List<ScoreButton>> { fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList };
+            guiList = new List<List<ScoreButton>> { fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList, wildBoarBtnList, cattleBtnList, fencedStablesBtnList };
 
             Loaded += (sender, e) =>
             {
@@ -88,7 +91,6 @@ namespace AgricolaCalculator
             {
                 if (fieldBtn.btn.IsPressed)
                 {
-                    //fieldsScore = fieldBtn.points;
                     player.pointsList[0] = fieldBtn.points;
                 }
                 else
@@ -97,7 +99,6 @@ namespace AgricolaCalculator
                     fieldBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
-
             countTotalScore();
         }
 
@@ -108,7 +109,6 @@ namespace AgricolaCalculator
                 if (pastureBtn.btn.IsPressed)
                 {
                     player.pointsList[1] = pastureBtn.points;
-
                 }
                 else
                 {
@@ -116,7 +116,6 @@ namespace AgricolaCalculator
                     pastureBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
-
             countTotalScore();
         }
 
@@ -127,7 +126,6 @@ namespace AgricolaCalculator
                 if (grainBtn.btn.IsPressed)
                 {
                     player.pointsList[2] = grainBtn.points;
-
                 }
                 else
                 {
@@ -135,7 +133,6 @@ namespace AgricolaCalculator
                     grainBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
-
             countTotalScore();
         }
 
@@ -146,7 +143,6 @@ namespace AgricolaCalculator
                 if (vegetableBtn.btn.IsPressed)
                 {
                     player.pointsList[3] = vegetableBtn.points;
-
                 }
                 else
                 {
@@ -154,7 +150,6 @@ namespace AgricolaCalculator
                     vegetableBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
-
             countTotalScore();
         }
 
@@ -164,8 +159,7 @@ namespace AgricolaCalculator
             {
                 if (sheepBtn.btn.IsPressed)
                 {
-                    player.pointsList[5] = sheepBtn.points;
-
+                    player.pointsList[4] = sheepBtn.points;
                 }
                 else
                 {
@@ -173,7 +167,57 @@ namespace AgricolaCalculator
                     sheepBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
                 }
             }
+            countTotalScore();
+        }
 
+        private void wildBoarBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (ScoreButton wildBoarBtn in wildBoarBtnList)
+            {
+                if (wildBoarBtn.btn.IsPressed)
+                {
+                    player.pointsList[5] = wildBoarBtn.points;
+                }
+                else
+                {
+                    wildBoarBtn.btn.IsChecked = false;
+                    wildBoarBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
+            countTotalScore();
+        }
+
+        private void cattleBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (ScoreButton cattleBtn in cattleBtnList)
+            {
+                if (cattleBtn.btn.IsPressed)
+                {
+                    player.pointsList[6] = cattleBtn.points;
+                }
+                else
+                {
+                    cattleBtn.btn.IsChecked = false;
+                    cattleBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
+            countTotalScore();
+        }
+
+        private void fencedStablesBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach (ScoreButton fencedStablesBtn in fencedStablesBtnList)
+            {
+                if (fencedStablesBtn.btn.IsPressed)
+                {
+                    player.pointsList[7] = fencedStablesBtn.points;
+                }
+                else
+                {
+                    fencedStablesBtn.btn.IsChecked = false;
+                    fencedStablesBtn.btn.Background = new SolidColorBrush(Colors.Transparent);
+                }
+            }
             countTotalScore();
         }
 
