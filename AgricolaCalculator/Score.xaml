@@ -111,6 +111,7 @@
                     <ToggleButton Content="5" FontSize="20" Height="72" HorizontalAlignment="Left" Margin="350,1585,0,0" Name="beggingCardsBtn6" Padding="5,8" VerticalAlignment="Top" Width="60" Checked="beggingCardsBtn_Checked" />
                 </Grid>
             </ScrollViewer>
+            <TextBlock Height="44" HorizontalAlignment="Left" Margin="58,20,0,0" Name="textBlock1" Text="Name" VerticalAlignment="Top" FontSize="28" />
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>

@@ -27,16 +27,18 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="{x:Null}">
-            <Button Content="Player 1" Height="72" HorizontalAlignment="Center" Margin="120,224,65,0" Name="player1Btn" VerticalAlignment="Top" Width="271" Click="player1Btn_Click" Background="White" Foreground="Black" />
-            <Button Content="Player 2" Height="72" HorizontalAlignment="Center" Margin="120,302,64,0" Name="player2Btn" VerticalAlignment="Top" Width="271" Click="player2Btn_Click" Background="Red" Foreground="Black"></Button>
-            <Button Content="Player 3" Height="72" HorizontalAlignment="Center" Margin="120,380,64,0" Name="player3Btn" VerticalAlignment="Top" Width="271" Click="player3Btn_Click" Background="#FF0039FF" Foreground="Black" />
-            <Button Content="Player 4" Height="72" HorizontalAlignment="Center" Margin="120,458,64,0" Name="player4Btn" VerticalAlignment="Top" Width="271" Click="player4Btn_Click" Foreground="Black" Background="#FFB000FF"></Button>
-            <Button Content="Player 5" Height="72" HorizontalAlignment="Center" Margin="120,536,64,0" Name="player5Btn" VerticalAlignment="Top" Width="271" Click="player5Btn_Click" Background="#FF00FF14" Foreground="Black"></Button>
-            <TextBlock Height="48" HorizontalAlignment="Left" Margin="57,236,0,0" Name="player1Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
-            <TextBlock Height="48" HorizontalAlignment="Left" Margin="57,314,0,0" Name="player2Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
-            <TextBlock Height="48" HorizontalAlignment="Left" Margin="57,392,0,0" Name="player3Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
-            <TextBlock Height="48" HorizontalAlignment="Left" Margin="57,470,0,0" Name="player4Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
-            <TextBlock Height="48" HorizontalAlignment="Left" Margin="57,548,0,0" Name="player5Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
+            <Button Content="Player 1" Height="72" HorizontalAlignment="Center" Margin="119,195,66,0" Name="player1Btn" VerticalAlignment="Top" Width="271" Click="player1Btn_Click" Background="White" Foreground="Black" />
+            <Button Content="Player 2" Height="72" HorizontalAlignment="Center" Margin="119,273,65,0" Name="player2Btn" VerticalAlignment="Top" Width="271" Click="player2Btn_Click" Background="Red" Foreground="Black"></Button>
+            <Button Content="Player 3" Height="72" HorizontalAlignment="Center" Margin="119,351,65,0" Name="player3Btn" VerticalAlignment="Top" Width="271" Click="player3Btn_Click" Background="#FF0039FF" Foreground="Black" />
+            <Button Content="Player 4" Height="72" HorizontalAlignment="Center" Margin="119,429,65,0" Name="player4Btn" VerticalAlignment="Top" Width="271" Click="player4Btn_Click" Foreground="Black" Background="#FFB000FF"></Button>
+            <Button Content="Player 5" Height="72" HorizontalAlignment="Center" Margin="119,507,65,0" Name="player5Btn" VerticalAlignment="Top" Width="271" Click="player5Btn_Click" Background="#FF00FF14" Foreground="Black"></Button>
+            <TextBlock Height="48" HorizontalAlignment="Left" Margin="56,207,0,0" Name="player1Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
+            <TextBlock Height="48" HorizontalAlignment="Left" Margin="56,285,0,0" Name="player2Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
+            <TextBlock Height="48" HorizontalAlignment="Left" Margin="56,363,0,0" Name="player3Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
+            <TextBlock Height="48" HorizontalAlignment="Left" Margin="56,441,0,0" Name="player4Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
+            <TextBlock Height="48" HorizontalAlignment="Left" Margin="56,519,0,0" Name="player5Score" Text="0" VerticalAlignment="Top" Width="75" TextAlignment="Center" FontSize="26" Padding="0,5,0,0" />
+            <TextBlock Height="47" HorizontalAlignment="Left" Margin="107,97,0,0" Name="textBlock1" Text="Add points to players" VerticalAlignment="Top" FontSize="28" />
+            <Button Content="Save game" Height="69" HorizontalAlignment="Left" Margin="151,604,0,0" Name="saveGame" VerticalAlignment="Top" Width="163" FontSize="22" Padding="5,1,5,3" Click="saveGame_Click" />
         </Grid>
     </Grid>
 </phone:PhoneApplicationPage>
