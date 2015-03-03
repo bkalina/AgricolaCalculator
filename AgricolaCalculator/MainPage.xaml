@@ -27,7 +27,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="{x:Null}">
-            <Button Content="Dodaj rozgrywkę" Height="72" HorizontalAlignment="Center" Margin="0,250,0,0" Name="addGame" VerticalAlignment="Top" Width="257" Click="addGame_Click" UseLayoutRounding="True" BorderBrush="White" />
+            <Button Content="Dodaj rozgrywkę" Height="72" HorizontalAlignment="Center" Margin="0,250,0,0" Name="addGame" VerticalAlignment="Top" Width="257" Click="addGame_Click" UseLayoutRounding="True" />
             <Button Content="Historia rozgrywek" Height="72" HorizontalAlignment="Center" Margin="0,382,0,0" Name="gameHistory" VerticalAlignment="Top" Width="268" Click="gameHistory_Click" />
             <Button Content="Zaloguj" Height="61" HorizontalAlignment="Center" Margin="0,613,0,0" Name="login" VerticalAlignment="Top" Width="106" Click="login_Click" FontSize="14" />
         </Grid>
