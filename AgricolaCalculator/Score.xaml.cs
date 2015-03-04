@@ -66,7 +66,7 @@ namespace AgricolaCalculator
             // karty żeb
             score += player.pointsList[10];
             // niewykorszystane pola
-            score += (player.pointsList[11]*(-1));
+            score += (player.pointsList[11] * (-1));
             // pokoje * typ
             score += (player.pointsList[12] * player.pointsList[8]);
             // punkty z kart
@@ -359,7 +359,5 @@ namespace AgricolaCalculator
                 this.btn = btn;
             }
         }
-
-
     }
 }

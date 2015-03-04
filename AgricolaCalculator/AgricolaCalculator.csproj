@@ -64,6 +64,7 @@
     <Compile Include="AddGame.xaml.cs">
       <DependentUpon>AddGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBmanager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
