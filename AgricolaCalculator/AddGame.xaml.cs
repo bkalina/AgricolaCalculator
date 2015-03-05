@@ -15,14 +15,17 @@ namespace AgricolaCalculator
 {
     public partial class AddGame : PhoneApplicationPage
     {
-        private Player player1, player2, player3, player4, player5;
+        
         private string id;
+        private List<Player> playersList;
+        private Player player1, player2, player3, player4, player5;
 
         public AddGame()
         {
             InitializeComponent();
+
             setupPlayers();
-            id = Guid.NewGuid().ToString();
+            id = Guid.NewGuid().ToString();        
 
             Loaded += (s, e) =>
             {
@@ -68,6 +71,7 @@ namespace AgricolaCalculator
             player4Score.Text = player4.score.ToString();
             player5Btn.Content = player5.name;
             player5Score.Text = player5.score.ToString();
+            playersList = new List<Player> { player1, player2, player3, player4, player5 };
         }
 
         private void reloadPlayers()
@@ -95,9 +99,10 @@ namespace AgricolaCalculator
 
         private void saveGame_Click(object sender, RoutedEventArgs e)
         {
-            List<Player> playersList = new List<Player> { player1, player2, player3, player4, player5 };
+
+            Game game = new Game(id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), playersList);
             DBmanager db = new DBmanager();
-            db.addGame(id, playersList);
+            db.addGame(game);
             // TODO dodac zapisywanie do bazy danych
         }
     }

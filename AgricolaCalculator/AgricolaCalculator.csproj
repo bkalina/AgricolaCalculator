@@ -13,7 +13,7 @@
     <AssemblyName>Agricola Calculator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
-    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>true</SilverlightApplication>
     <SupportedCultures>
@@ -65,6 +65,7 @@
       <DependentUpon>AddGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBmanager.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
@@ -101,6 +102,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="gamesDB" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>

@@ -34,6 +34,11 @@ namespace AgricolaCalculator
         private int cardsPoints = 0;
         private int bonusPoints = 0;
 
+        public Player()
+        {
+
+        }
+
         public Player(string name)
         {
             this.name = name;
