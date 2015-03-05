@@ -4,7 +4,7 @@ using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Reflection;
-using SQLiteClient;
+using Community.CsharpSqlite.SQLiteClient;
 
 namespace AgricolaCalculator
 {
@@ -31,11 +31,7 @@ namespace AgricolaCalculator
             List<Game> gamesEntries = null;
 
             string strSelect = "SELECT * FROM Games ORDER BY ID ASC";
-            gamesEntries = (Application.Current as App).db.SelectList<Game>(strSelect);
-            foreach (Game game in gamesEntries)
-            {
-                Console.Write(game.id);
-            }
+
         }
     }
 }
