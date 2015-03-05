@@ -12,21 +12,21 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
-using SQLiteClient;
+using Community.CsharpSqlite.SQLiteClient;
 
 namespace AgricolaCalculator
 {
 
     public class DBmanager
     {
-        private String dbName = "gamesDB";
-        private SQLiteConnection db = null;
+        private String dbName = "gamesDB.sqlite";
+        private SqliteConnection db = null;
 
         public DBmanager()
         {
-            Open();
-            createDB();
-            Close();
+            //Open();
+            //createDB();
+            //Close();
         }
 
         ~DBmanager()
@@ -38,7 +38,7 @@ namespace AgricolaCalculator
         {
             if (db == null)
             {
-                db = new SQLiteConnection(dbName);
+                db = new SqliteConnection("Version=3,uri=file:gamesDB.sqlite");
                 db.Open();
             }
         }
@@ -55,7 +55,7 @@ namespace AgricolaCalculator
         public void addGame(Game game)
         {
             Open();
-            SQLiteCommand cmd;
+            SqliteCommand cmd;
             // TODO sprawdzanie czy istnieje gra o takim id
 
             string gameDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -79,7 +79,8 @@ namespace AgricolaCalculator
                 }
             }
             cmdStr += "true\");";
-            cmd = db.CreateCommand(cmdStr);
+            cmd = db.CreateCommand();
+            cmd.CommandText = cmdStr;
             cmd.ExecuteNonQuery();
             Close();
         }
@@ -102,17 +103,18 @@ namespace AgricolaCalculator
 
         private void createDB()
         {
-            SQLiteCommand cmd;
+            SqliteCommand cmd;
             //cmd = db.CreateCommand("drop table if exists Games");
             //Console.Write(cmd.ExecuteNonQuery());
-            cmd = db.CreateCommand("create table if not exists Games " +
+            cmd = db.CreateCommand();
+            cmd.CommandText = "create table if not exists Games " +
                                     "(id text primary key, gameDate text, " +
                                     "p1name text, p1score text, p1fields text, p1pastures text, p1grain text, p1vegetables text, p1sheep text, p1wildBoar text, p1cattle text, p1fencedStables text, p1roomType text, p1familyMembers text, p1beggingCards text, p1unusedSpaces text, p1rooms text, p1cardsPoints text, p1bonusPoints text, " +
                                     "p2name text, p2score text, p2fields text, p2pastures text, p2grain text, p2vegetables text, p2sheep text, p2wildBoar text, p2cattle text, p2fencedStables text, p2roomType text, p2familyMembers text, p2beggingCards text, p2unusedSpaces text, p2rooms text, p2cardsPoints text, p2bonusPoints text, " +
                                     "p3name text, p3score text, p3fields text, p3pastures text, p3grain text, p3vegetables text, p3sheep text, p3wildBoar text, p3cattle text, p3fencedStables text, p3roomType text, p3familyMembers text, p3beggingCards text, p3unusedSpaces text, p3rooms text, p3cardsPoints text, p3bonusPoints text, " +
                                     "p4name text, p4score text, p4fields text, p4pastures text, p4grain text, p4vegetables text, p4sheep text, p4wildBoar text, p4cattle text, p4fencedStables text, p4roomType text, p4familyMembers text, p4beggingCards text, p4unusedSpaces text, p4rooms text, p4cardsPoints text, p4bonusPoints text, " +
                                     "p5name text, p5score text, p5fields text, p5pastures text, p5grain text, p5vegetables text, p5sheep text, p5wildBoar text, p5cattle text, p5fencedStables text, p5roomType text, p5familyMembers text, p5beggingCards text, p5unusedSpaces text, p5rooms text, p5cardsPoints text, p5bonusPoints text, " +
-                                    "flaga text)");
+                                    "flaga text)";
             Console.Write(cmd.ExecuteNonQuery());
         }
     }

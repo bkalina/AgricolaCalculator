@@ -4,7 +4,6 @@ using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Reflection;
-using SQLiteClient;
 
 namespace AgricolaCalculator
 {
