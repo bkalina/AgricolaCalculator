@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Reflection;
 
 namespace AgricolaCalculator
 {
@@ -22,6 +23,21 @@ namespace AgricolaCalculator
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
+        
+        /// <summary>
+        /// Dostęp do bazy danych
+        /// </summary>
+        private DBmanager _db;
+        public DBmanager db
+        {
+            get
+            {
+                Assembly assem = Assembly.GetExecutingAssembly();
+                if (_db == null)
+                    _db = new DBmanager(assem.FullName.Substring(0, assem.FullName.IndexOf(',')), "gamesDB.sqlite");
+                return _db;
+            }
+        }
 
         /// <summary>
         /// Constructor for the Application object.

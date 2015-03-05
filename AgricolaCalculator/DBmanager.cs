@@ -19,19 +19,17 @@ namespace AgricolaCalculator
 
     public class DBmanager
     {
-        private String _dbName = "gamesDB";
+        private String _dbName = null;
         private SQLiteConnection db = null;
 
         public DBmanager()
         {
-            Open();
-            createDB();
-            Close();
+            
         }
 
         public DBmanager(String assemblyName, String dbName)
         {
-            IsolatedStorageFile store =IsolatedStorageFile.GetUserStoreForApplication();
+            IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
             if (!store.FileExists(dbName))
             {
                 CopyFromContentToStorage(assemblyName, dbName);
@@ -48,7 +46,7 @@ namespace AgricolaCalculator
         {
             if (db == null)
             {
-                db = new SQLiteConnection(_dbName);
+                db = new SQLiteConnection("gamesDB.sqlite");
                 db.Open();
             }
         }
@@ -83,17 +81,13 @@ namespace AgricolaCalculator
             return oc;
         }
 
-        private void CopyFromContentToStorage(String assemblyName,String dbName)
+        private void CopyFromContentToStorage(String assemblyName, String dbName)
         {
             IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
-            System.IO.Stream src =
-                Application.GetResourceStream(
-                    new Uri("/" + assemblyName + ";component/" + dbName,
-                            UriKind.Relative)).Stream;
-            IsolatedStorageFileStream dest =
-                new IsolatedStorageFileStream(dbName,
-                    System.IO.FileMode.OpenOrCreate,
-                    System.IO.FileAccess.Write, store);
+            string uri = "gamesDB-journal.sqlite";
+            store.CreateFile(uri);
+            System.IO.Stream src = Application.GetResourceStream(new Uri("/" + assemblyName + ";component/" + dbName, UriKind.Relative)).Stream;
+            IsolatedStorageFileStream dest = new IsolatedStorageFileStream(dbName, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write, store);
             src.Position = 0;
             CopyStream(src, dest);
             dest.Flush();

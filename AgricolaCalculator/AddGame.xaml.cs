@@ -101,8 +101,7 @@ namespace AgricolaCalculator
         {
 
             Game game = new Game(id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), playersList);
-            DBmanager db = new DBmanager();
-            db.addGame(game);
+            (Application.Current as App).db.addGame(game);
             // TODO dodac zapisywanie do bazy danych
         }
     }

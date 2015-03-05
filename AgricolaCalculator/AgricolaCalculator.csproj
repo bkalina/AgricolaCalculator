@@ -102,7 +102,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="gamesDB" />
+    <Resource Include="gamesDB.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
