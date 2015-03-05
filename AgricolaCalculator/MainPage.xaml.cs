@@ -9,8 +9,7 @@ namespace AgricolaCalculator
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        private DBmanager db;
- 
+
         public MainPage()
         {
             InitializeComponent();
@@ -28,8 +27,7 @@ namespace AgricolaCalculator
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            db = new DBmanager();
-            string strSelect = "SELECT * FROM Games";
+            
         }
     }
 }

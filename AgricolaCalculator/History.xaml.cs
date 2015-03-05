@@ -19,5 +19,10 @@ namespace AgricolaCalculator
         {
             InitializeComponent();
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<Game> gamesList = (Application.Current as App).db.readGames();
+        }
     }
 }

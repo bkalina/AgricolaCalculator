@@ -23,6 +23,7 @@ namespace AgricolaCalculator
     {
         private String dbName = "gamesDB.sqlite";
         private SqliteConnection db = null;
+        private SqliteCommand cmd;
 
         public DBmanager()
         {
@@ -47,6 +48,7 @@ namespace AgricolaCalculator
             if (db == null)
             {
                 db = new SqliteConnection("Version=3,uri=file:gamesDB.sqlite");
+                cmd = db.CreateCommand();
                 db.Open();
             }
         }
@@ -63,7 +65,6 @@ namespace AgricolaCalculator
         public void addGame(Game game)
         {
             Open();
-            SqliteCommand cmd;
             // TODO sprawdzanie czy istnieje gra o takim id
 
             string gameDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -87,17 +88,56 @@ namespace AgricolaCalculator
                 }
             }
             cmdStr += "true\");";
-            cmd = db.CreateCommand();
+            cmd.Transaction = db.BeginTransaction();
             cmd.CommandText = cmdStr;
             cmd.ExecuteNonQuery();
+            cmd.Transaction.Commit();
             Close();
         }
 
-        public void readGames()
+        public List<Game> readGames()
         {
             Open();
-            // TODO pobrać liste gier
+            List<Game> gamesList = new List<Game>();
+            cmd.CommandText = "SELECT * FROM Games";
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    System.Diagnostics.Debug.WriteLine("ID " + reader.GetString(0));
+                    System.Diagnostics.Debug.WriteLine("DATA " + reader.GetString(1));
+
+                    System.Diagnostics.Debug.WriteLine("p1name " + reader.GetString(2));
+                    System.Diagnostics.Debug.WriteLine("p1score " + reader.GetString(3));
+                    Player p1 = new Player(reader.GetString(2), reader.GetInt32(3),
+                        new List<int> { reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetInt32(7), reader.GetInt32(8), reader.GetInt32(9), reader.GetInt32(10), reader.GetInt32(11), reader.GetInt32(12), reader.GetInt32(13), reader.GetInt32(14), reader.GetInt32(15), reader.GetInt32(16), reader.GetInt32(17), reader.GetInt32(18) });
+
+                    System.Diagnostics.Debug.WriteLine("p2name " + reader.GetString(19));
+                    System.Diagnostics.Debug.WriteLine("p2score " + reader.GetString(20));
+                    Player p2 = new Player(reader.GetString(19), reader.GetInt32(20),
+                        new List<int> { reader.GetInt32(21), reader.GetInt32(22), reader.GetInt32(23), reader.GetInt32(24), reader.GetInt32(25), reader.GetInt32(26), reader.GetInt32(27), reader.GetInt32(28), reader.GetInt32(29), reader.GetInt32(30), reader.GetInt32(31), reader.GetInt32(32), reader.GetInt32(33), reader.GetInt32(34), reader.GetInt32(35) });
+
+                    System.Diagnostics.Debug.WriteLine("p3name " + reader.GetString(36));
+                    System.Diagnostics.Debug.WriteLine("p3score " + reader.GetString(37));
+                    Player p3 = new Player(reader.GetString(36), reader.GetInt32(37),
+                        new List<int> { reader.GetInt32(38), reader.GetInt32(39), reader.GetInt32(40), reader.GetInt32(41), reader.GetInt32(42), reader.GetInt32(43), reader.GetInt32(44), reader.GetInt32(45), reader.GetInt32(46), reader.GetInt32(47), reader.GetInt32(48), reader.GetInt32(49), reader.GetInt32(50), reader.GetInt32(51), reader.GetInt32(52) });
+
+                    System.Diagnostics.Debug.WriteLine("p4name " + reader.GetString(53));
+                    System.Diagnostics.Debug.WriteLine("p4score " + reader.GetString(54));
+                    Player p4 = new Player(reader.GetString(53), reader.GetInt32(54),
+                        new List<int> { reader.GetInt32(55), reader.GetInt32(56), reader.GetInt32(57), reader.GetInt32(58), reader.GetInt32(59), reader.GetInt32(60), reader.GetInt32(61), reader.GetInt32(62), reader.GetInt32(63), reader.GetInt32(64), reader.GetInt32(65), reader.GetInt32(66), reader.GetInt32(67), reader.GetInt32(68), reader.GetInt32(69) });
+
+                    System.Diagnostics.Debug.WriteLine("p5name " + reader.GetString(70));
+                    System.Diagnostics.Debug.WriteLine("p6score " + reader.GetString(71));
+                    Player p5 = new Player(reader.GetString(70), reader.GetInt32(71),
+                        new List<int> { reader.GetInt32(72), reader.GetInt32(73), reader.GetInt32(74), reader.GetInt32(75), reader.GetInt32(76), reader.GetInt32(77), reader.GetInt32(78), reader.GetInt32(79), reader.GetInt32(80), reader.GetInt32(81), reader.GetInt32(82), reader.GetInt32(83), reader.GetInt32(84), reader.GetInt32(85), reader.GetInt32(86) });
+
+                    gamesList.Add(new Game(reader.GetString(0), reader.GetString(1), new List<Player>{p1, p2, p3, p4, p5}));
+                }
+            }
             Close();
+
+            return gamesList;
         }
 
         public List<Player> getGame(string id)

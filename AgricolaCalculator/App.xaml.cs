@@ -23,6 +23,8 @@ namespace AgricolaCalculator
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        public DBmanager db { get; set; }
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -30,6 +32,7 @@ namespace AgricolaCalculator
         {
             // Global handler for uncaught exceptions. 
             UnhandledException += Application_UnhandledException;
+            db = new DBmanager();
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)

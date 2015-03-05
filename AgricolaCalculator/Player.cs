@@ -47,5 +47,12 @@ namespace AgricolaCalculator
             pointsList = new List<int> { fields, pastures, grain, vegetables, sheep, wildBoar, cattle, fencedStables, roomType, familyMembers, beggingCards, unusedSpaces, rooms, cardsPoints, bonusPoints };
         }
 
+        public Player(string name, int score, List<int> pointsList)
+        {
+            this.name = name;
+            this.score = score;
+            this.pointsList = pointsList;
+        }
+
     }
 }
