@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO.IsolatedStorage;
 using Community.CsharpSqlite.SQLiteClient;
+using System.IO;
+using System.Reflection;
 
 namespace AgricolaCalculator
 {
@@ -27,6 +29,12 @@ namespace AgricolaCalculator
             //Open();
             //createDB();
             //Close();
+            Assembly assem = Assembly.GetExecutingAssembly();
+            IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
+            if (!store.FileExists(dbName))
+            {
+                CopyFromContentToStorage(assem.FullName.Substring(0, assem.FullName.IndexOf(',')), dbName);
+            }
         }
 
         ~DBmanager()
@@ -116,6 +124,43 @@ namespace AgricolaCalculator
                                     "p5name text, p5score text, p5fields text, p5pastures text, p5grain text, p5vegetables text, p5sheep text, p5wildBoar text, p5cattle text, p5fencedStables text, p5roomType text, p5familyMembers text, p5beggingCards text, p5unusedSpaces text, p5rooms text, p5cardsPoints text, p5bonusPoints text, " +
                                     "flaga text)";
             Console.Write(cmd.ExecuteNonQuery());
+        }
+
+        private void CopyFromContentToStorage(String assemblyName, String dbName)
+        {
+            IsolatedStorageFile store =
+                IsolatedStorageFile.GetUserStoreForApplication();
+            System.IO.Stream src =
+                Application.GetResourceStream(
+                    new Uri("/" + assemblyName + ";component/" + dbName,
+                            UriKind.Relative)).Stream;
+            IsolatedStorageFileStream dest =
+                new IsolatedStorageFileStream(dbName,
+                    System.IO.FileMode.OpenOrCreate,
+                    System.IO.FileAccess.Write, store);
+            src.Position = 0;
+            CopyStream(src, dest);
+            dest.Flush();
+            dest.Close();
+            src.Close();
+            dest.Dispose();
+        }
+
+        private static void CopyStream(System.IO.Stream input,
+                                        IsolatedStorageFileStream output)
+        {
+            byte[] buffer = new byte[32768];
+            long TempPos = input.Position;
+            int readCount;
+            do
+            {
+                readCount = input.Read(buffer, 0, buffer.Length);
+                if (readCount > 0)
+                {
+                    output.Write(buffer, 0, readCount);
+                }
+            } while (readCount > 0);
+            input.Position = TempPos;
         }
     }
 }
