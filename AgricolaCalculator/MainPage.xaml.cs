@@ -10,18 +10,8 @@ namespace AgricolaCalculator
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        private DBmanager _db;
-        public DBmanager db
-        {
-            get
-            {
-                Assembly assem = Assembly.GetExecutingAssembly();
-                if (_db == null)
-                    _db = new DBmanager(assem.FullName.Substring(0, assem.FullName.IndexOf(',')), "gamesDB");
-                return _db;
-            }
-        }
-
+        private DBmanager db;
+ 
         public MainPage()
         {
             InitializeComponent();
@@ -39,15 +29,8 @@ namespace AgricolaCalculator
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
-            //ObservableCollection<string> 
-            List<Game> gamesEntries = null;
-
-            string strSelect = "SELECT * FROM Games ORDER BY ID ASC";
-            gamesEntries = db.SelectList<Game>(strSelect); //SelectObservableCollection<string>(strSelect);
-            foreach (Game game in gamesEntries)
-            {
-                Console.Write(game.id);
-            }
+            db = new DBmanager();
+            string strSelect = "SELECT * FROM Games";
         }
     }
 }

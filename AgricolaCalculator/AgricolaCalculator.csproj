@@ -102,7 +102,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="gamesDB" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
