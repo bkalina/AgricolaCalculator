@@ -36,14 +36,12 @@ namespace AgricolaCalculator
             roomTypeBtnList = new List<ScoreButton> { new ScoreButton(0, roomTypeBtn1), new ScoreButton(1, roomTypeBtn2), new ScoreButton(2, roomTypeBtn3) };
             familyMembersBtnList = new List<ScoreButton> { new ScoreButton(6, familyMembersBtn1), new ScoreButton(9, familyMembersBtn2), new ScoreButton(12, familyMembersBtn3), new ScoreButton(15, familyMembersBtn4) };
             beggingCardsBtnList = new List<ScoreButton> { new ScoreButton(0, beggingCardsBtn1), new ScoreButton(-3, beggingCardsBtn2), new ScoreButton(-6, beggingCardsBtn3), new ScoreButton(-9, beggingCardsBtn4), new ScoreButton(-12, beggingCardsBtn5), new ScoreButton(-15, beggingCardsBtn6) };
-
             guiList = new List<List<ScoreButton>> { fieldstBtnList, pasturesBtnList, grainBtnList, vegetablesBtnList, sheepBtnList, wildBoarBtnList, cattleBtnList, fencedStablesBtnList, roomTypeBtnList, familyMembersBtnList, beggingCardsBtnList };
 
             Loaded += (sender, e) =>
             {
                 setupSelectedPlayer();
                 setupGUI();
-
             };
         }
 

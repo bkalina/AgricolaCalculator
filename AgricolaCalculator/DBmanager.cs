@@ -65,10 +65,17 @@ namespace AgricolaCalculator
         public void addGame(Game game)
         {
             Open();
-            // TODO sprawdzanie czy istnieje gra o takim id
+            cmd.CommandText = "SELECT count(*) FROM Games where id = '" + game.id + "'";
 
             string gameDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string cmdStr =
+            string cmdStr = null;
+
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
+                reader.Read();
+                if (reader.GetInt32(0) == 0) // brak gry o takim ID
+                {
+                    cmdStr =
                             "insert into Games " +
                             "(" +
                             "id, gameDate, " +
@@ -78,16 +85,36 @@ namespace AgricolaCalculator
                             "p4name, p4score, p4fields, p4pastures, p4grain, p4vegetables, p4sheep, p4wildBoar, p4cattle, p4fencedStables, p4roomType, p4familyMembers, p4beggingCards, p4unusedSpaces, p4rooms, p4cardsPoints, p4bonusPoints, " +
                             "p5name, p5score, p5fields, p5pastures, p5grain, p5vegetables, p5sheep, p5wildBoar, p5cattle, p5fencedStables, p5roomType, p5familyMembers, p5beggingCards, p5unusedSpaces, p5rooms, p5cardsPoints, p5bonusPoints, " +
                             "flaga)" +
-                            " values (\"" + game.id + "\", \"" + game.gameDate + "\", \"";
-            foreach (Player p in game.playersList)
-            {
-                cmdStr += (p.name + "\", \"" + p.score + "\", \"");
-                for (int i = 0; i < p.pointsList.Count; i++)
+                            " values ('" + game.id + "', '" + game.gameDate + "', '";
+                    foreach (Player p in game.playersList)
+                    {
+                        cmdStr += (p.name + "', '" + p.score + "', '");
+                        for (int i = 0; i < p.pointsList.Count; i++)
+                        {
+                            cmdStr += (p.pointsList[i] + "', '");
+                        }
+                    }
+                    cmdStr += "true');";
+                }
+                else
                 {
-                    cmdStr += (p.pointsList[i] + "\", \"");
+                    cmdStr = "update Games SET ";
+                    List<string> points = new List<string> {"fields", "pastures", "grain", "vegetables", "sheep", "wildBoar", "cattle", "fencedStables", "roomType", "familyMembers", "beggingCards", "unusedSpaces", "rooms", "cardsPoints", "bonusPoints" };
+                    int pNo = 1;
+                    foreach (Player p in game.playersList)
+                    {
+                        cmdStr += ("p" + pNo + "name = '" + p.name + "', " + "p" + pNo + "score = '" + p.score + "', ");
+
+                        
+                        for (int i = 0; i < p.pointsList.Count; i++)
+                        {
+                            cmdStr += ("p" + pNo + points[i] + " = '" +  p.pointsList[i] + "', ");
+                        }
+                        pNo++;
+                    }
+                    cmdStr += "flaga = 'true' where id = '" + game.id + "'";
                 }
             }
-            cmdStr += "true\");";
             cmd.Transaction = db.BeginTransaction();
             cmd.CommandText = cmdStr;
             cmd.ExecuteNonQuery();

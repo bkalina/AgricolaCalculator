@@ -17,7 +17,7 @@ namespace AgricolaCalculator
 
         private void addGame_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AddGame.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/NewGame.xaml", UriKind.Relative));
         }
 
         private void gameHistory_Click(object sender, RoutedEventArgs e)
