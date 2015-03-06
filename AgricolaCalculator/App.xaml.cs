@@ -17,6 +17,8 @@ namespace AgricolaCalculator
 {
     public partial class App : Application
     {
+        //isetool.exe ts xd cdbcf563-22d6-4a3e-b635-d52bc274629d D:\AgricolaCalculator\Storage
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>

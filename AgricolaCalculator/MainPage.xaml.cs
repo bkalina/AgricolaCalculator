@@ -24,10 +24,5 @@ namespace AgricolaCalculator
         {
             NavigationService.Navigate(new Uri("/History.xaml", UriKind.Relative));
         }
-
-        private void login_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }

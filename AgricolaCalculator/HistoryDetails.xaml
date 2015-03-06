@@ -1,0 +1,88 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="AgricolaCalculator.HistoryDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="Agricola Calculator" Style="{StaticResource PhoneTextNormalStyle}" HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
+        <ListBox BorderThickness="2" Height="690" Grid.Row="1" x:Name="listBoxobj" Margin="0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="Gray" Width="460">
+                        <Border BorderBrush="White" BorderThickness="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" x:Name="name" FontSize="28" TextWrapping="Wrap" Text="{Binding name}" Foreground="White" Margin="5,0,0,0" />
+                                <TextBlock Grid.Row="0" x:Name="scoreTxt" FontSize="28" TextWrapping="Wrap" Text="Score: " Foreground="White" Margin="0,0,75,0" HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Row="0" x:Name="score" FontSize="28" TextWrapping="Wrap" Text="{Binding score}" Foreground="White" Margin="0,0,35,0" HorizontalAlignment="Right"/>
+                                
+                                <TextBlock Grid.Row="1" x:Name="fieldsTxt"  TextWrapping="Wrap" Text="Fields: " Foreground="White" Margin="5,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="fields"  TextWrapping="Wrap" Text="{Binding pointsList[0]}" Foreground="White" Margin="60,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="pasturesTxt"  TextWrapping="Wrap" Text="Pastures: " Foreground="White" Margin="120,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="pastures"  TextWrapping="Wrap" Text="{Binding pointsList[1]}" Foreground="White" Margin="195,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="grainTxt"  TextWrapping="Wrap" Text="Grain: " Foreground="White" Margin="230,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="grain"  TextWrapping="Wrap" Text="{Binding pointsList[2]}" Foreground="White" Margin="285,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="vegetablesTxt"  TextWrapping="Wrap" Text="Vegetables: " Foreground="White" Margin="340,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="1" x:Name="vegetables"  TextWrapping="Wrap" Text="{Binding pointsList[3]}" Foreground="White" Margin="435,0,0,0" FontSize="18" />
+
+                                <TextBlock Grid.Row="2" x:Name="sheepTxt"  TextWrapping="Wrap" Text="Sheep: " Foreground="White" Margin="5,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="sheep"  TextWrapping="Wrap" Text="{Binding pointsList[4]}" Foreground="White" Margin="70,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="wildBoarTxt"  TextWrapping="Wrap" Text="Wildboar: " Foreground="White" Margin="120,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="wildBoar"  TextWrapping="Wrap" Text="{Binding pointsList[5]}" Foreground="White" Margin="200,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="cattleTxt"  TextWrapping="Wrap" Text="Cattle: " Foreground="White" Margin="230,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="cattle"  TextWrapping="Wrap" Text="{Binding pointsList[6]}" Foreground="White" Margin="290,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="fencedStablesTxt"  TextWrapping="Wrap" Text="Stables: " Foreground="White" Margin="340,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="2" x:Name="fencedStables"  TextWrapping="Wrap" Text="{Binding pointsList[7]}" Foreground="White" Margin="410,0,0,0" FontSize="18" />
+
+                                <TextBlock Grid.Row="3" x:Name="roomTypeTxt"  TextWrapping="Wrap" Text="Room type: " Foreground="White" Margin="5,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="roomType"  TextWrapping="Wrap" Text="{Binding pointsList[8]}" Foreground="White" Margin="100,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="familyMembersTxt"  TextWrapping="Wrap" Text="Family: " Foreground="White" Margin="120,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="familyMembers"  TextWrapping="Wrap" Text="{Binding pointsList[9]}" Foreground="White" Margin="180,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="beggingCardsTxt"  TextWrapping="Wrap" Text="B.Cards: " Foreground="White" Margin="230,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="beggingCards"  TextWrapping="Wrap" Text="{Binding pointsList[10]}" Foreground="White" Margin="300,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="unusedSpacesTxt"  TextWrapping="Wrap" Text="F.Spaces: " Foreground="White" Margin="340,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="3" x:Name="unusedSpaces"  TextWrapping="Wrap" Text="{Binding pointsList[11]}" Foreground="White" Margin="410,0,0,0" FontSize="18" />
+
+                                <TextBlock Grid.Row="4" x:Name="roomsTxt"  TextWrapping="Wrap" Text="Rooms: " Foreground="White" Margin="5,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="4" x:Name="rooms"  TextWrapping="Wrap" Text="{Binding pointsList[12]}" Foreground="White" Margin="70,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="4" x:Name="cardsPointsTxt"  TextWrapping="Wrap" Text="Cards: " Foreground="White" Margin="120,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="4" x:Name="cardsPoints"  TextWrapping="Wrap" Text="{Binding pointsList[13]}" Foreground="White" Margin="180,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="4" x:Name="bonusPointsTxt"  TextWrapping="Wrap" Text="Bonus: " Foreground="White" Margin="230,0,0,0" FontSize="18" />
+                                <TextBlock Grid.Row="4" x:Name="bonusPoints"  TextWrapping="Wrap" Text="{Binding pointsList[14]}" Foreground="White" Margin="290,0,0,0" FontSize="18" />
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
+</phone:PhoneApplicationPage>

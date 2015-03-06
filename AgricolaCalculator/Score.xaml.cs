@@ -62,7 +62,7 @@ namespace AgricolaCalculator
             // rodzina
             score += player.pointsList[9];
             // karty żeb
-            score += player.pointsList[10];
+            score += (player.pointsList[10]);
             // niewykorszystane pola
             score += (player.pointsList[11] * (-1));
             // pokoje * typ

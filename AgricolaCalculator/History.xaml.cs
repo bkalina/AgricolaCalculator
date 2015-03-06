@@ -23,6 +23,17 @@ namespace AgricolaCalculator
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             List<Game> gamesList = (Application.Current as App).db.readGames();
+            listBoxobj.ItemsSource = gamesList;
+        }
+
+        private void listBoxobj_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (listBoxobj.SelectedIndex != -1)
+            {
+                Game listitem = listBoxobj.SelectedItem as Game;
+                NavigationService.Navigate(new Uri("/HistoryDetails.xaml?id=" + listitem.id, UriKind.Relative));
+            }
         }
     }
 }

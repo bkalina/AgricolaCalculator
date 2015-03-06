@@ -27,6 +27,24 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0"></Grid>
-        <ScrollViewer Height="696" HorizontalAlignment="Left" Margin="12,0,0,0" Name="scrollViewer1" VerticalAlignment="Top" Width="456" Grid.Row="1" />
+        <ScrollViewer Height="696" HorizontalAlignment="Left" Margin="12,0,0,0" Name="scrollViewer1" VerticalAlignment="Top" Width="456" Grid.Row="1">
+            <ListBox Height="649" x:Name="listBoxobj" Width="440" SelectionChanged="listBoxobj_SelectionChanged" VerticalAlignment="Bottom">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="Gray" Width="480">
+                            <Border BorderBrush="White" BorderThickness="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="46"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" x:Name="NameTxt" TextWrapping="Wrap" Text="{Binding gameDate}" FontSize="23" TextAlignment="Center" Padding="0,10" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <TextBlock Grid.Row="1" Height="30" HorizontalAlignment="Center" Margin="0,14,0,0" Name="textBlock1" Text="Game date" VerticalAlignment="Top" Width="283" TextAlignment="Center" FontSize="23" />
     </Grid>
 </phone:PhoneApplicationPage>

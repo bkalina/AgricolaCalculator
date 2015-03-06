@@ -16,6 +16,12 @@ namespace AgricolaCalculator
 
         }
 
+        public Game(string id, string gameDate)
+        {
+            this.id = id;
+            this.gameDate = gameDate;
+        }
+
         public Game(string id, string gameDate, List<Player> playersList)
         {
             this.id = id;
