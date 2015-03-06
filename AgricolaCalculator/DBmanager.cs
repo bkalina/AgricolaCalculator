@@ -27,9 +27,7 @@ namespace AgricolaCalculator
 
         public DBmanager()
         {
-            //Open();
-            //createDB();
-            //Close();
+            // Załadowanie pliku bazy danych do IsolatedStorage jeśli jeszcze go tam nie ma
             Assembly assem = Assembly.GetExecutingAssembly();
             IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
             if (!store.FileExists(dbName))
@@ -38,11 +36,7 @@ namespace AgricolaCalculator
             }
         }
 
-        ~DBmanager()
-        {
-            Close();
-        }
-
+        // Otwarcie połączenia
         private void Open()
         {
             if (db == null)
@@ -53,6 +47,7 @@ namespace AgricolaCalculator
             }
         }
 
+        // Zamknięcie połączenia
         private void Close()
         {
             if (db != null)
@@ -62,6 +57,7 @@ namespace AgricolaCalculator
             }
         }
 
+        // Dodanie gry do lokalnej bazy danych / edycja istniejącej gry
         public void addGame(Game game)
         {
             Open();
@@ -73,7 +69,8 @@ namespace AgricolaCalculator
             using (SqliteDataReader reader = cmd.ExecuteReader())
             {
                 reader.Read();
-                if (reader.GetInt32(0) == 0) // brak gry o takim ID
+                // brak gry o takim ID
+                if (reader.GetInt32(0) == 0)
                 {
                     cmdStr =
                             "insert into Games " +
@@ -96,6 +93,7 @@ namespace AgricolaCalculator
                     }
                     cmdStr += "true');";
                 }
+                // gra o podanym ID istnieje zatem robimy UPDATE
                 else
                 {
                     cmdStr = "update Games SET ";
@@ -122,6 +120,7 @@ namespace AgricolaCalculator
             Close();
         }
 
+        // Pobranie listy gier z lokalnej bazy danych
         public List<Game> readGames()
         {
             Open();
@@ -167,6 +166,7 @@ namespace AgricolaCalculator
             return gamesList;
         }
 
+        // Pobranie gry o podanym id z lokalnej bazy danych
         public List<Player> getGame(string id)
         {
             Open();
@@ -176,11 +176,10 @@ namespace AgricolaCalculator
             return playersList;
         }
 
+        // Utworzenie tabeli gier w lokalnej bazie danych
         private void createDB()
         {
             SqliteCommand cmd;
-            //cmd = db.CreateCommand("drop table if exists Games");
-            //Console.Write(cmd.ExecuteNonQuery());
             cmd = db.CreateCommand();
             cmd.CommandText = "create table if not exists Games " +
                                     "(id text primary key, gameDate text, " +
@@ -193,6 +192,7 @@ namespace AgricolaCalculator
             Console.Write(cmd.ExecuteNonQuery());
         }
 
+        // Metoda kopiująca strumień pliku do IsolatedStorage
         private void CopyFromContentToStorage(String assemblyName, String dbName)
         {
             IsolatedStorageFile store =
@@ -213,6 +213,7 @@ namespace AgricolaCalculator
             dest.Dispose();
         }
 
+        // Metoda wspierająca kopiowanie strumienia pliku do IsolatedStorage
         private static void CopyStream(System.IO.Stream input,
                                         IsolatedStorageFileStream output)
         {

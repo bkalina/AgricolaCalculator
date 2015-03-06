@@ -125,6 +125,9 @@
     <Content Include="Community.CsharpSqlite.SqlLiteClient.WP7.dll" />
     <Content Include="Community.CsharpSqlite.WP.dll" />
     <Content Include="Community.CsharpSqlite.WP7.dll" />
+    <Resource Include="logo_agri.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />
