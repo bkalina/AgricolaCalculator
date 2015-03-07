@@ -232,6 +232,22 @@ namespace AgricolaCalculator
             return gamesList;
         }
 
+        public int gamesCount()
+        {
+            Open();
+            cmd.CommandText = "SELECT COUNT(*) FROM Games";
+            int count = 0;
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    count = reader.GetInt32(0);
+                }
+            }
+            Close();
+            return count;
+        }
+
         // Utworzenie tabeli gier w lokalnej bazie danych
         private void createDB()
         {

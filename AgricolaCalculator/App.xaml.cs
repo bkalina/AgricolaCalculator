@@ -55,6 +55,24 @@ namespace AgricolaCalculator
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            setupTile();
+        }
+
+        private void setupTile()
+        {
+            ShellTile tile = ShellTile.ActiveTiles.First();
+            if (null != tile)
+            {
+                StandardTileData data = new StandardTileData();
+                data.Title = "Saved Games";
+                data.BackgroundImage = new Uri("Background2.png", UriKind.Relative);
+                data.Count = (Application.Current as App).db.gamesCount();
+                data.BackTitle = "Agricola Calc";
+                data.BackBackgroundImage = new Uri("Background3.png", UriKind.Relative);
+                data.BackContent = "Add game";
+                tile.Update(data);
+            }
         }
 
         // Code to execute when the application is launching (eg, from Start)

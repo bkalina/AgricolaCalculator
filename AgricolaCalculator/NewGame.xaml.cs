@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-
+using Microsoft.Phone.Shell;
 
 namespace AgricolaCalculator
 {
@@ -102,7 +102,20 @@ namespace AgricolaCalculator
         {
             Game game = new Game(id, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), playersList);
             (Application.Current as App).db.addGame(game);
+            MessageBox.Show("Game saved \nNow you can update this game until exit");
+            tileUpdate();
             saveGame.Content = "Update";
+        }
+
+        private void tileUpdate()
+        {
+            ShellTile tile = ShellTile.ActiveTiles.First();
+            if (null != tile)
+            {
+                StandardTileData data = new StandardTileData();
+                data.Count = (Application.Current as App).db.gamesCount();
+                tile.Update(data);
+            }
         }
     }
 }

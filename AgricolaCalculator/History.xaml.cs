@@ -15,6 +15,9 @@ namespace AgricolaCalculator
 {
     public partial class History : PhoneApplicationPage
     {
+
+        private List<Game> gamesList;
+
         public History()
         {
             InitializeComponent();
@@ -22,7 +25,7 @@ namespace AgricolaCalculator
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Game> gamesList = (Application.Current as App).db.readGames();
+            gamesList = (Application.Current as App).db.readGames();
             listBoxobj.ItemsSource = gamesList;
         }
 
